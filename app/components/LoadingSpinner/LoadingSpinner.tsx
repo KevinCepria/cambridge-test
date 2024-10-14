@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { LoadingSpinnerProps } from './LoadingSpinner.tyes';
+import { LoadingSpinnerProps } from './LoadingSpinner.types';
 
 export const LoadingSpinner = (props: LoadingSpinnerProps) => {
   const { size = 24, className, ...rootProps } = props;

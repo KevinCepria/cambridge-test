@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { ButtonProps } from './Button.tyes';
+import { ButtonProps } from './Button.types';
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 
 const Button = (props: ButtonProps) => {
