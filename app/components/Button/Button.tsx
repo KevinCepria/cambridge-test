@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 
 import { ButtonProps } from './Button.types';
-import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
+import { LoadingSpinner } from '../LoadingSpinner';
 
-const Button = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
   const { children, disabled, loading, type = 'info', className, ...rootProps } = props;
 
   return (
@@ -36,5 +36,3 @@ const Button = (props: ButtonProps) => {
     </button>
   );
 };
-
-export default Button;
