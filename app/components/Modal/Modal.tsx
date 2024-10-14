@@ -16,7 +16,7 @@ export const Modal = (props: ModalProps) => {
         <DialogPanel
           transition
           className={clsx(
-            'w-full space-y-4 bg-white p-5 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0',
+            'w-full space-y-4 bg-white p-5 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0 rounded-lg',
             { 'max-w-sm': size === 'sm', 'max-w-md': size === 'md', 'max-w-lg': size === 'lg' },
           )}
         >
