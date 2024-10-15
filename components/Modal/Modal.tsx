@@ -6,6 +6,7 @@ import { ModalProps } from './Modal.types';
 
 export const Modal = (props: ModalProps) => {
   const { onClose = noop, open, size = 'md', children } = props;
+
   return (
     <Dialog open={open} onClose={onClose} className="relative z-50">
       <DialogBackdrop
