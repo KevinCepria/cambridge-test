@@ -1,5 +1,5 @@
 import { Article } from 'features/Article/Article';
-import { ArticleListProps } from 'features/ArticleList/ArticleList.tyes';
+import { ArticleListProps } from '@/features/ArticleList/ArticleList.types';
 
 export const ArticleList = (props: ArticleListProps) => {
   const { articles } = props;

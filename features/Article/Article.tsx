@@ -1,4 +1,4 @@
-import { ArticleProps } from 'features/Article/Article.tyes';
+import { ArticleProps } from '@/features/Article/Article.types';
 
 export const Article = (props: ArticleProps) => {
   const { article } = props;
