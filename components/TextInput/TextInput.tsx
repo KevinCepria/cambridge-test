@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 
 import { TextInputProps } from '@/components/TextInput/Textinput.types';
-import { LoadingSpinner } from '../LoadingSpinner';
 
 export const TextInput = (props: TextInputProps) => {
   const { children, error, disabled, className, ...rootProps } = props;
@@ -15,7 +14,7 @@ export const TextInput = (props: TextInputProps) => {
           className,
           {
             'border-red-500 focus:outline-red-500': error,
-            'border-blue-500 focus:outline-blue-500': !error,
+            'focus:outline-blue-500': !error,
           },
         )}
         type="text"
