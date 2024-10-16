@@ -22,7 +22,8 @@
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
       "@/features/*": ["features/*"],
-      "@/utils/*": ["app/utils/*"]
+      "@/utils/*": ["app/utils/*"],
+      "@/icons/*": ["app/icons/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
