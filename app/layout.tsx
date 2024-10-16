@@ -13,7 +13,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <nav className="bg-blue-600 px-5 py-5 mb-10 sticky top-0">
+          <div className="max-w-7xl mx-auto">Article Chamber</div>
+        </nav>
+        <div className="px-5">
+          <main className="max-w-7xl mx-auto">{children}</main>
+        </div>
+      </body>
     </html>
   );
 }
