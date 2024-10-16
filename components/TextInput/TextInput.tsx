@@ -11,14 +11,17 @@ export const TextInput = (props: TextInputProps) => {
       <input
         {...rootProps}
         className={clsx(
-          'text-gray-700 rounded-md relative text overflow-hidden p-1.5 border border-gray-400 border-opacity-50',
+          'text-gray-700 rounded-md relative text overflow-hidden py-1.5 px-2.5 border border-gray-400 border-opacity-50 -outline-offset-5 truncate disabled:cursor-not-allowed',
           className,
-          { 'border-red-500': error },
+          {
+            'border-red-500 focus:outline-red-500': error,
+            'border-blue-500 focus:outline-blue-500': !error,
+          },
         )}
         type="text"
         disabled={disabled}
       />
-      {error && <div className="text-red-500 text-sm mt-2 px-2">{error}</div>}
+      {error && <div className="text-red-500 text-sm mt-1 px-1.5">{error}</div>}
     </div>
   );
 };
