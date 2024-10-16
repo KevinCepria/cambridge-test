@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '@/styles/global.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,8 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
-        <nav className="bg-blue-600 px-5 py-5 mb-10 sticky top-0">
+      <body className="antialiased">
+        <nav className="bg-blue-600 px-5 py-5 mb-10 sticky top-0 z-10">
           <div className="max-w-7xl mx-auto">Article Chamber</div>
         </nav>
         <div className="px-5">
