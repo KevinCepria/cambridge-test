@@ -1,13 +1,13 @@
-import { HTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
-type ButtonType = 'error' | 'info';
+type ButtonVariant = 'error' | 'info';
 
 export type ButtonProps = {
   /**
    * The variant of the button.
    * @default 'info'
    */
-  type?: ButtonType;
+  variant?: ButtonVariant;
 
   /**
    * If `true`, the button will be disabled.
@@ -22,4 +22,4 @@ export type ButtonProps = {
    * @default false
    */
   loading?: boolean;
-} & HTMLAttributes<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
