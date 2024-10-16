@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
 
-type ButtonVariant = 'error' | 'info';
+type ButtonVariant = 'error' | 'info' | 'neutral';
 
 export type ButtonProps = {
   /**
