@@ -30,12 +30,12 @@ export const PasswordInput = (props: PasswordInputProps) => {
             className,
           )}
           type={inputType}
-          disabled={true}
+          disabled={disabled}
         />
         <button
           className="disabled:cursor-not-allowed outline-none px-2"
           onClick={() => setShowPassword(!showPassword)}
-          disabled={true}
+          disabled={disabled}
           type="button"
         >
           <Icon className="w-5 h-5 text-gray-700" />
