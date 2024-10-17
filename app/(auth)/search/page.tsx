@@ -31,7 +31,7 @@ const SearchPage = (props: PageProps) => {
     <div>
       <h1 className="sm:text-3xl font-bold uppercase sm:mb-10 mb-5 text-xl">Search Articles</h1>
       <div>
-        <form className="flex items-stretch justify-end gap-3 mb-5 max-sm:flex-col">
+        <div className="flex items-stretch justify-end gap-3 mb-5 max-sm:flex-col">
           <TextInput
             placeholder="Search..."
             className="max-sm:w-full"
@@ -55,7 +55,7 @@ const SearchPage = (props: PageProps) => {
           >
             Search
           </Button>
-        </form>
+        </div>
         <ArticleList articles={articles} />
       </div>
     </div>
