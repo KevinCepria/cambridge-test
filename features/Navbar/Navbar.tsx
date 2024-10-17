@@ -2,7 +2,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { useContext } from 'react';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 
 import { LogoV1 } from '@/icons/logo/LogoV1';
@@ -15,6 +15,7 @@ import { APP_ROUTES, NAV_LINKS } from '@/utils/constants';
 export const Navbar = (props: NavbarProps) => {
   const { className } = props;
   const router = useRouter();
+  const pathName = usePathname();
   const { user } = useContext(UserContext);
 
   return (
@@ -23,9 +24,15 @@ export const Navbar = (props: NavbarProps) => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <LogoV1 className="w-28 text-white" />
-        <div className="flex items-center gap-3 text-white font-bold">
+        <div className="flex items-center gap-4 text-white font-bold">
           {NAV_LINKS.map((link) => (
-            <Link href={link.url} className="max-sm:hidden" key={link.name}>
+            <Link
+              href={link.url}
+              className={clsx('max-sm:hidden', {
+                'underline underline-offset-8': link.url === pathName,
+              })}
+              key={link.name}
+            >
               {link.name}
             </Link>
           ))}
@@ -55,7 +62,12 @@ export const Navbar = (props: NavbarProps) => {
                 <div className="border-b sm:hidden">
                   {NAV_LINKS.map((link) => (
                     <MenuItem key={link.name}>
-                      <Link className="text-left block py-1.5 px-3" href={link.url}>
+                      <Link
+                        className={clsx('text-left block py-1.5 px-3', {
+                          'bg-blue-100': link.url === pathName,
+                        })}
+                        href={link.url}
+                      >
                         {link.name}
                       </Link>
                     </MenuItem>
