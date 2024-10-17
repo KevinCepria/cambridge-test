@@ -10,7 +10,7 @@ export const Button = (props: ButtonProps) => {
     <button
       {...rootProps}
       className={clsx(
-        'px-5 py-2 text-white rounded-lg text-center relative text overflow-hidden',
+        'px-5 py-2 text-white rounded-lg text-center relative overflow-hidden',
         className,
         {
           'bg-blue-500': variant === 'info',
