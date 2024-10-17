@@ -1,4 +1,5 @@
 import { fetchUsers } from '@/services/api';
+import { UserType } from '@/types/User';
 
 export const login = async (username: string, password: string) => {
   const users = await fetchUsers();
@@ -17,3 +18,5 @@ export const logout = () => {
 export const isAuthenticated = () => {
   return localStorage.getItem('user') !== null;
 };
+
+export const getUser = () => JSON.parse(localStorage.getItem('user') as string) as UserType;
