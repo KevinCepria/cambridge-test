@@ -7,7 +7,7 @@ export const ArticleList = (props: ArticleListProps) => {
   return (
     <div className="grid gap-5 grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))]">
       {articles.map((article) => (
-        <Article article={article} />
+        <Article article={article} key={article.id} />
       ))}
     </div>
   );
