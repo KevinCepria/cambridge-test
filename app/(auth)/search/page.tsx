@@ -1,6 +1,8 @@
 'use client';
+export const dynamic = 'force-dynamic';
+
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { SearchArticleList } from '@/features/SearchArticleList';
 import { ArticleType } from '@/types/Article';
@@ -11,24 +13,26 @@ import { fetchArticles } from 'services/api';
 
 import { SELECT_OPTIONS_SEARCH, APP_ROUTES } from 'utils/constants';
 
-const SearchPage = ({ searchParams }: { searchParams: Record<string, string> }) => {
+const SearchPage = () => {
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const paramKeys = Object.keys(searchParams);
   const [paramKey, setParamKey] = useState('');
   const [paramValue, setParamValue] = useState('');
+
+  const iteratorParamsArr = useSearchParams().entries().toArray();
+  const [key, keyValue] = iteratorParamsArr[0];
 
   const router = useRouter();
 
   useEffect(() => {
-    setParamKey(paramKeys[0] || SELECT_OPTIONS_SEARCH[0].value);
-    setParamValue(searchParams[paramKeys[0]] || '');
+    setParamKey(key || SELECT_OPTIONS_SEARCH[0].value);
+    setParamValue(keyValue || '');
     setLoading(true);
-    fetchArticles(null, paramKeys[0], searchParams[paramKeys[0]])
+    fetchArticles(null, key, keyValue)
       .then((data) => setArticles(data))
       .finally(() => setLoading(false));
-  }, [searchParams]);
+  }, [key, keyValue]);
 
   return (
     <div>
