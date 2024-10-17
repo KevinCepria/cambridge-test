@@ -12,3 +12,5 @@ export const ArticleList = (props: ArticleListProps) => {
     </div>
   );
 };
+
+ArticleList.displayName = 'ArticleList';

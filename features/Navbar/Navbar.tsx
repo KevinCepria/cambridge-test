@@ -92,3 +92,5 @@ export const Navbar = (props: NavbarProps) => {
     </nav>
   );
 };
+
+Navbar.displayName = 'Navbar';

@@ -82,3 +82,5 @@ export const LoginForm = (props: LoginFormProps) => {
     </form>
   );
 };
+
+LoginForm.displayName = 'LoginForm';
