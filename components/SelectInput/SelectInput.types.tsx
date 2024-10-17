@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, SelectHTMLAttributes } from 'react';
+import { SelectHTMLAttributes } from 'react';
 
 export type SelectInputProps = {
   /**
