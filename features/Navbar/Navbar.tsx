@@ -50,6 +50,8 @@ export const Navbar = (props: NavbarProps) => {
                 transition
                 anchor="bottom end"
                 className="bg-white w-52 z-20 origin-top-right rounded-sm border p-1 text-sm/6 text-gray-600 transition duration-100 ease-out"
+                modal={false}
+                portal={true}
               >
                 <div className="border-b sm:hidden">
                   <MenuItem>

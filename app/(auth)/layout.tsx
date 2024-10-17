@@ -14,7 +14,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className="antialiased overflow-y-scroll">
         {authenticated ? (
           <UserProvider>
             <Navbar className="sm:mb-10 mb-5" />
