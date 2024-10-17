@@ -17,7 +17,7 @@ export default function RootLayout({
       <body className="antialiased">
         {authenticated ? (
           <UserProvider>
-            <Navbar />
+            <Navbar className="sm:mb-10 mb-5" />
             <div className="px-5">
               <main className="max-w-7xl mx-auto">{children}</main>
             </div>

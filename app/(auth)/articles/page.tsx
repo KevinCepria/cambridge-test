@@ -18,16 +18,17 @@ const ArticlesPage = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold uppercase mb-10">My Articles</h1>
+      <h1 className="sm:text-3xl font-bold uppercase sm:mb-10 mb-5 text-xl">My Articles</h1>
       <div>
         <div className="flex items-stretch justify-end gap-3 mb-5">
           <Button
             onClick={() => setOpen(true)}
             type="button"
             title="Create new article"
-            className="!p-4"
+            className="!p-2 sm:!p-4 max-sm:w-full flex items-center gap-2 justify-center"
           >
             <PlusIcon className="font-bold" />
+            <span className="sm:hidden">Create Article</span>
           </Button>
           <ArticleModalForm open={open} onClose={() => setOpen(false)} />
         </div>

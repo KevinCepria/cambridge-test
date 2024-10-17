@@ -19,10 +19,10 @@ const SearchPage = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold uppercase mb-10">Search Articles</h1>
+      <h1 className="sm:text-3xl font-bold uppercase sm:mb-10 mb-5 text-xl">Search Articles</h1>
       <div>
-        <form className="flex items-stretch justify-end gap-3 mb-5">
-          <TextInput placeholder="Search..." />
+        <form className="flex items-stretch justify-end gap-3 mb-5 max-sm:flex-col">
+          <TextInput placeholder="Search..." className="max-sm:w-full" />
           <SelectInput options={SELECT_OPTIONS_SEARCH} defaultValue={'Title'} />
           <Button type="submit">Search</Button>
         </form>
