@@ -20,7 +20,8 @@ const SearchPage = () => {
   const [paramValue, setParamValue] = useState('');
 
   const iteratorParamsArr = useSearchParams().entries().toArray();
-  const [key, keyValue] = iteratorParamsArr[0];
+
+  const [key, keyValue] = iteratorParamsArr[0] || [];
 
   const router = useRouter();
 
