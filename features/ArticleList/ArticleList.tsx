@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { sortBy } from 'lodash';
 
 import { Article } from 'features/Article/Article';
 import { ArticleListProps } from '@/features/ArticleList/ArticleList.types';
@@ -8,16 +9,11 @@ import { Toast } from '@/components/Toast';
 import { ArticleEditFormModal } from '@/features/ArticleEditFormModal';
 
 export const ArticleList = (props: ArticleListProps) => {
-  const { articles, loading } = props;
+  const { articles, loading, onEditSuccess } = props;
 
   const [articleToEdit, setArticleToEdit] = useState<ArticleType | undefined>(undefined);
 
   const [showToast, setShowToast] = useState(false);
-
-  const onArticleEdit = (createdArticle: ArticleType) => {
-    // setArticles([...articles, createdArticle]);
-    setShowToast(true);
-  };
 
   if (loading) {
     return (
@@ -36,7 +32,7 @@ export const ArticleList = (props: ArticleListProps) => {
   }
   return (
     <div className="grid gap-x-5 gap-y-14 sm:grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] mb-10">
-      {articles.map((article) => (
+      {sortBy(articles, 'id').map((article) => (
         <Article
           article={article}
           key={article.id}
@@ -47,7 +43,7 @@ export const ArticleList = (props: ArticleListProps) => {
         article={articleToEdit}
         open={!!articleToEdit}
         onClose={() => setArticleToEdit(undefined)}
-        onEditSuccess={onArticleEdit}
+        onEditSuccess={onEditSuccess}
       />
       <Toast
         message="Successfully updated article"

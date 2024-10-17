@@ -1,5 +1,6 @@
 'use client';
 import { useContext, useEffect, useState } from 'react';
+import { unionBy } from 'lodash';
 
 import { ArticleList } from '@/features/ArticleList';
 import { ArticleType } from '@/types/Article';
@@ -27,8 +28,17 @@ const ArticlesPage = () => {
     }
   }, [user.id]);
 
-  const onArticleCreation = (createdArticle: ArticleType) => {
+  const onCreationSuccess = (createdArticle: ArticleType) => {
     setArticles([...articles, createdArticle]);
+    console.log('created article', createdArticle);
+    setShowToast(true);
+  };
+
+  const onEditSuccess = (updatedArticle: ArticleType) => {
+    const x = unionBy([updatedArticle], [...articles], 'id');
+    console.log('SSSSS', articles, x);
+    setArticles(x);
+    console.log('updated article', updatedArticle);
     setShowToast(true);
   };
 
@@ -49,13 +59,13 @@ const ArticlesPage = () => {
           <ArticleCreationFormModal
             open={open}
             onClose={() => setOpen(false)}
-            onCreationSuccess={onArticleCreation}
+            onCreationSuccess={onCreationSuccess}
           />
         </div>
-        <ArticleList articles={articles} loading={loading} />
+        <ArticleList articles={articles} loading={loading} onEditSuccess={onEditSuccess} />
       </div>
       <Toast
-        message="Successfully created article"
+        message="Action successful!"
         show={showToast}
         variant={'success'}
         onHide={() => setShowToast(false)}

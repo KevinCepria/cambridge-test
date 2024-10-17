@@ -8,7 +8,7 @@ import { TextArea } from '@/components/TextArea';
 import { Button } from '@/components/Button';
 import { ArticleType } from '@/types/Article';
 import { UserContext } from '@/contexts/UserContext';
-import { createArticle } from '@/services/api';
+import { createArticle, updateArticle } from '@/services/api';
 
 export const ArticleEditFormModal = (props: ArticleEditFormModalProps) => {
   const { article, open, onClose, onEditSuccess } = props;
@@ -25,13 +25,10 @@ export const ArticleEditFormModal = (props: ArticleEditFormModalProps) => {
     shouldUnregister: true,
   });
 
-  const { user } = useContext(UserContext);
-
   const onSubmit = async (data: Pick<ArticleType, 'title' | 'body'>) => {
-    const articleData = await createArticle({
+    const articleData = await updateArticle(article?.id as number, {
       title: data.title,
       body: data.body,
-      userId: user.id,
     });
 
     onEditSuccess?.(articleData);
@@ -71,11 +68,12 @@ export const ArticleEditFormModal = (props: ArticleEditFormModalProps) => {
             render={({ field }) => (
               <TextArea
                 {...field}
-                rows={5}
+                rows={8}
                 className="w-full"
                 placeholder="Content..."
                 error={errors.body && 'This field is required'}
                 disabled={isSubmitting}
+                wrap="hard"
               />
             )}
           />

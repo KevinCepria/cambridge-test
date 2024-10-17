@@ -12,4 +12,10 @@ export type ArticleListProps = {
    * @required
    */
   loading: boolean;
+
+  /**
+   * Callback that will run upon successful submission of the form
+   * @default undefined
+   */
+  onEditSuccess?: (article: ArticleType) => void;
 };

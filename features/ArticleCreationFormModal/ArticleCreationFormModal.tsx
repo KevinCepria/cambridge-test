@@ -64,7 +64,8 @@ export const ArticleCreationFormModal = (props: ArticleCreationFormModalProps) =
             render={({ field }) => (
               <TextArea
                 {...field}
-                rows={5}
+                rows={8}
+                wrap="hard"
                 className="w-full"
                 placeholder="Content..."
                 error={errors.body && 'This field is required'}
