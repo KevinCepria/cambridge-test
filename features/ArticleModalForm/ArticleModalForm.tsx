@@ -1,4 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
+import { useContext } from 'react';
 
 import { Modal } from '@/components/Modal';
 import { ArticleModalFormProps } from '@/features/ArticleModalForm/ArticleModalForm.types';
@@ -6,28 +7,33 @@ import { TextInput } from '@/components/TextInput';
 import { TextArea } from '@/components/TextArea';
 import { Button } from '@/components/Button';
 import { ArticleType } from '@/types/Article';
+import { UserContext } from '@/contexts/UserContext';
+import { createArticle } from '@/services/api';
 
 export const ArticleModalForm = (props: ArticleModalFormProps) => {
-  const { article, open, onClose } = props;
+  const { article, open, onClose, onSubmitSuccess } = props;
 
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
-    defaultValues: article || {
-      id: 1,
-      userId: 1,
-      title: '',
-      body: '',
+    defaultValues: {
+      title: article?.title || '',
+      body: article?.body || '',
     },
     shouldUnregister: true,
   });
 
+  const { user } = useContext(UserContext);
   const editMode = !!article;
   const heading = `${editMode ? 'Edit' : 'Create'} Article`;
 
-  const onSubmit = (data: ArticleType) => console.log('ssss', data);
+  const onSubmit = async (data: Pick<ArticleType, 'title' | 'body'>) => {
+    const newArticle = await createArticle({ title: data.title, body: data.body, userId: user.id });
+    onSubmitSuccess?.(newArticle);
+    onClose?.();
+  };
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -43,6 +49,7 @@ export const ArticleModalForm = (props: ArticleModalFormProps) => {
               placeholder="Title"
               className="w-full"
               error={errors.title && 'This field is required'}
+              disabled={isSubmitting}
             />
           )}
         />
@@ -59,17 +66,22 @@ export const ArticleModalForm = (props: ArticleModalFormProps) => {
                 className="w-full"
                 placeholder="Content..."
                 error={errors.body && 'This field is required'}
+                disabled={isSubmitting}
               />
             )}
           />
         </div>
         <div className="flex justify-end gap-3">
-          <Button type="button" onClick={onClose} variant="neutral">
+          <Button type="button" onClick={onClose} variant="neutral" disabled={isSubmitting}>
             Cancel
           </Button>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" loading={isSubmitting}>
+            Submit
+          </Button>
         </div>
       </form>
     </Modal>
   );
 };
+
+ArticleModalForm.displayName = 'ArticleModalForm';

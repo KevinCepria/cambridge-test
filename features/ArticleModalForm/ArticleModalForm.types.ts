@@ -8,4 +8,10 @@ export type ArticleModalFormProps = {
    * @default undefined
    */
   article?: ArticleType;
+
+  /**
+   * Callback that will run upon successful submission of the form
+   * @default undefined
+   */
+  onSubmitSuccess?: (article: ArticleType) => void;
 } & Pick<ModalProps, 'open' | 'onClose'>;
