@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { ArticleList } from '@/features/ArticleList';
 import { ArticleType } from '@/types/Article';
@@ -7,14 +7,23 @@ import { PlusIcon } from '@/icons/solid';
 import { Button } from '@/components/Button';
 import { ArticleModalForm } from '@/features/ArticleModalForm';
 import { fetchArticles } from 'services/api';
+import { UserContext } from '@/contexts/UserContext';
+import { Toast } from '@/components/Toast';
 
 const ArticlesPage = () => {
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [open, setOpen] = useState(false);
+  const { user } = useContext(UserContext);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    fetchArticles().then((data) => setArticles(data));
-  }, []);
+    if (user.id) fetchArticles(user.id).then((data) => setArticles(data));
+  }, [user.id]);
+
+  const onArticleCreation = (createdArticle: ArticleType) => {
+    setArticles([...articles, createdArticle]);
+    setShowToast(true);
+  };
 
   return (
     <div>
@@ -30,10 +39,20 @@ const ArticlesPage = () => {
             <PlusIcon className="font-bold" />
             <span className="sm:hidden">Create Article</span>
           </Button>
-          <ArticleModalForm open={open} onClose={() => setOpen(false)} />
+          <ArticleModalForm
+            open={open}
+            onClose={() => setOpen(false)}
+            onSubmitSuccess={onArticleCreation}
+          />
         </div>
         <ArticleList articles={articles} />
       </div>
+      <Toast
+        message="Successfully created article"
+        show={showToast}
+        variant={'success'}
+        onHide={() => setShowToast(false)}
+      />
     </div>
   );
 };

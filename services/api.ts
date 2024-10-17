@@ -5,8 +5,12 @@ import { UserType } from '@/types/User';
 
 const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-export const fetchArticles = async () => {
-  const response: AxiosResponse<ArticleType[]> = await axios.get(`${API_BASE_URL}/posts`);
+export const fetchArticles = async (userId?: number) => {
+  const response: AxiosResponse<ArticleType[]> = await axios.get(`${API_BASE_URL}/posts`, {
+    params: {
+      userId,
+    },
+  });
   return response.data;
 };
 
@@ -15,7 +19,7 @@ export const fetchArticle = async (id: number) => {
   return response.data;
 };
 
-export const createArticle = async (data: any) => {
+export const createArticle = async (data: Omit<ArticleType, 'id'>) => {
   const response: AxiosResponse<ArticleType> = await axios.post(`${API_BASE_URL}/posts`, data);
   return response.data;
 };
