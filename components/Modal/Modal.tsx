@@ -11,7 +11,7 @@ export const Modal = (props: ModalProps) => {
     <Dialog open={open} onClose={onClose} className="relative z-50">
       <DialogBackdrop
         transition
-        className="fixed inset-0 bg-black/30 duration-300 ease-out data-[closed]:opacity-0"
+        className="fixed inset-0 bg-black/30 duration-300 ease-out data-[closed]:opacity-0 backdrop-blur-sm"
       />
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
         <DialogPanel
