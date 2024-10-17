@@ -16,7 +16,6 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('SSSSS');
     try {
       setUser(getUser());
     } catch (_e) {
