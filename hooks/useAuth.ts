@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { isAuthenticated } from '@/services/auth';
+import { APP_ROUTES } from '@/utils/constants';
 
 export const useAuth = (invert: boolean = false) => {
   const router = useRouter();
@@ -12,9 +13,9 @@ export const useAuth = (invert: boolean = false) => {
 
   useEffect(() => {
     if (!invert && authenticated === false) {
-      router.push('/');
+      router.push(APP_ROUTES.home);
     } else if (invert && authenticated) {
-      router.push('/articles');
+      router.push(APP_ROUTES.myArticles);
     }
   }, [authenticated]);
 

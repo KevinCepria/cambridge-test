@@ -10,6 +10,7 @@ import { UserContext } from '@/contexts/UserContext';
 import { UserIcon } from '@/icons/outline';
 import { logout } from '@/services/auth';
 import { NavbarProps } from '@/features/Navbar/Navbar.types';
+import { APP_ROUTES, NAV_LINKS } from '@/utils/constants';
 
 export const Navbar = (props: NavbarProps) => {
   const { className } = props;
@@ -23,12 +24,12 @@ export const Navbar = (props: NavbarProps) => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <LogoV1 className="w-28 text-white" />
         <div className="flex items-center gap-3 text-white font-bold">
-          <Link href="/articles" className="max-sm:hidden">
-            My Articles
-          </Link>
-          <Link href="/search" className="max-sm:hidden">
-            Search
-          </Link>
+          {NAV_LINKS.map((link) => (
+            <Link href={link.url} className="max-sm:hidden" key={link.name}>
+              {link.name}
+            </Link>
+          ))}
+
           <div className="relative">
             <Menu>
               <MenuButton className="max-sm:border-none sm:border-l border-opacity-40 border-white pl-3 flex items-center gap-1">
@@ -43,23 +44,20 @@ export const Navbar = (props: NavbarProps) => {
                 className="bg-white w-52 z-20 origin-top-right rounded-sm border p-1 text-sm/6 text-gray-600 transition duration-100 ease-out"
               >
                 <div className="border-b sm:hidden">
-                  <MenuItem>
-                    <Link className="text-left block py-1.5 px-3" href="/articles">
-                      My Articles
-                    </Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <Link className="text-left block py-1.5 px-3" href="/search">
-                      Search
-                    </Link>
-                  </MenuItem>
+                  {NAV_LINKS.map((link) => (
+                    <MenuItem key={link.name}>
+                      <Link className="text-left block py-1.5 px-3" href={link.url}>
+                        {link.name}
+                      </Link>
+                    </MenuItem>
+                  ))}
                 </div>
                 <MenuItem>
                   <button
                     className="text-left w-full py-1.5 px-3"
                     onClick={() => {
                       logout();
-                      router.push('/');
+                      router.push(APP_ROUTES.home);
                     }}
                   >
                     Logout

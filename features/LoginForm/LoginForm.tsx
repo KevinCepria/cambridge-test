@@ -11,6 +11,7 @@ import { PasswordInput } from '@/components/PasswordInput';
 import { Button } from '@/components/Button';
 import { login } from '@/services/auth';
 import { LoginFormProps } from '@/features/LoginForm/LoginForm.types';
+import { APP_ROUTES } from '@/utils/constants';
 
 export const LoginForm = (props: LoginFormProps) => {
   const { className } = props;
@@ -31,7 +32,7 @@ export const LoginForm = (props: LoginFormProps) => {
   const onSubmit = async (data: LoginType) => {
     try {
       await login(data.username, data.password);
-      router.push('/articles');
+      router.push(APP_ROUTES.myArticles);
     } catch (error: any) {
       setloginError(error.message as string);
     }

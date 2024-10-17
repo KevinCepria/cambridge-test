@@ -4,6 +4,7 @@ import { logout } from '@/services/auth';
 
 import { UserType } from '@/types/User';
 import { getUser } from '@/services/auth';
+import { APP_ROUTES } from '@/utils/constants';
 
 export type UserContextProps = {
   user: UserType;
@@ -20,7 +21,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(getUser());
     } catch (_e) {
       logout();
-      router.push('/');
+      router.push(APP_ROUTES.home);
     }
   }, []);
 
