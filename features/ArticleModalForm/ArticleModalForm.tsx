@@ -8,7 +8,7 @@ import { TextArea } from '@/components/TextArea';
 import { Button } from '@/components/Button';
 import { ArticleType } from '@/types/Article';
 import { UserContext } from '@/contexts/UserContext';
-import { createArticle } from '@/services/api';
+import { createArticle, updateArticle } from '@/services/api';
 
 export const ArticleModalForm = (props: ArticleModalFormProps) => {
   const { article, open, onClose, onSubmitSuccess } = props;
@@ -30,8 +30,18 @@ export const ArticleModalForm = (props: ArticleModalFormProps) => {
   const heading = `${editMode ? 'Edit' : 'Create'} Article`;
 
   const onSubmit = async (data: Pick<ArticleType, 'title' | 'body'>) => {
-    const newArticle = await createArticle({ title: data.title, body: data.body, userId: user.id });
-    onSubmitSuccess?.(newArticle);
+    let articleData;
+    if (editMode) {
+      articleData = await updateArticle(article.id, {
+        title: data.title,
+        body: data.body,
+        userId: user.id,
+      });
+    } else {
+      articleData = await createArticle({ title: data.title, body: data.body, userId: user.id });
+    }
+
+    onSubmitSuccess?.(articleData);
     onClose?.();
   };
 
