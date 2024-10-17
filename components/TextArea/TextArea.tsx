@@ -5,7 +5,7 @@ import { TextAreaProps } from '@/components/TextArea/TextArea.types';
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props: TextAreaProps, ref) => {
-    const { children, error, disabled, className, ...rootProps } = props;
+    const { error, disabled, className, ...rootProps } = props;
 
     return (
       <div>
