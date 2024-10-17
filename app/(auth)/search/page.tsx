@@ -24,6 +24,8 @@ const SearchPage = (props: PageProps) => {
   const router = useRouter();
 
   useEffect(() => {
+    setParamKey(paramKeys[0]);
+    setParamValue(searchParams[paramKeys[0]]);
     fetchArticles(null, paramKeys[0], searchParams[paramKeys[0]]).then((data) => setArticles(data));
   }, [searchParams]);
 
