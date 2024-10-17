@@ -51,6 +51,7 @@ const SearchPage = (props: PageProps) => {
           />
           <Button
             type="button"
+            loading={loading}
             onClick={() =>
               router.push(
                 `${APP_ROUTES.searchArticles}${

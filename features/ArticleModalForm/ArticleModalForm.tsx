@@ -12,7 +12,6 @@ import { createArticle, updateArticle } from '@/services/api';
 
 export const ArticleModalForm = (props: ArticleModalFormProps) => {
   const { article = null, open, onClose, onSubmitSuccess, action = 'create' } = props;
-  console.log('ssss', article);
   const {
     handleSubmit,
     control,

@@ -1,6 +1,6 @@
 import { Article } from 'features/Article/Article';
 
-import { SearchArticleListProps } from '@/features/SearchArticleList/ArticleList.types';
+import { SearchArticleListProps } from '@/features/SearchArticleList/SearchArticleList.types';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 export const SearchArticleList = (props: SearchArticleListProps) => {
