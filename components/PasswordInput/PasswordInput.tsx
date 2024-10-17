@@ -6,7 +6,7 @@ import { ShowPasswordIcon, HideViewIconIcon } from '@/icons/outline';
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   (props: PasswordInputProps, ref) => {
-    const { children, error, disabled, className, ...rootProps } = props;
+    const { error, disabled, className, ...rootProps } = props;
     const [showPassword, setShowPassword] = useState(false);
 
     const inputType = showPassword ? 'text' : 'password';
@@ -49,3 +49,5 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     );
   },
 );
+
+PasswordInput.displayName = 'PasswordInput';

@@ -27,3 +27,5 @@ export const Modal = (props: ModalProps) => {
     </Dialog>
   );
 };
+
+Modal.displayName = 'Modal';

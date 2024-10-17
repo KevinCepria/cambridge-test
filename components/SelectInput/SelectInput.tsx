@@ -18,9 +18,13 @@ export const SelectInput = forwardRef<HTMLSelectElement, SelectInputProps>(
         ref={ref}
       >
         {options.map((option) => (
-          <option value={option.value}>{option.name}</option>
+          <option value={option.value} key={option.value}>
+            {option.name}
+          </option>
         ))}
       </select>
     );
   },
 );
+
+SelectInput.displayName = 'SelectInput';

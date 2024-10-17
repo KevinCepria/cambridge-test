@@ -5,7 +5,7 @@ import { TextInputProps } from '@/components/TextInput/Textinput.types';
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (props: TextInputProps, ref) => {
-    const { children, error, disabled, className, ...rootProps } = props;
+    const { error, disabled, className, ...rootProps } = props;
 
     return (
       <div>
@@ -28,3 +28,5 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     );
   },
 );
+
+TextInput.displayName = 'TextInput';

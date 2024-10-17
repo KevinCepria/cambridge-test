@@ -22,3 +22,5 @@ export const LoadingSpinner = (props: LoadingSpinnerProps) => {
     </svg>
   );
 };
+
+LoadingSpinner.displayName = 'LoadingSpinner';

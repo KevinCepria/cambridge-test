@@ -38,3 +38,5 @@ export const Button = (props: ButtonProps) => {
     </button>
   );
 };
+
+Button.displayName = 'Button';
