@@ -5,10 +5,10 @@ import { ArticleList } from '@/features/ArticleList';
 import { ArticleType } from '@/types/Article';
 import { PlusIcon } from '@/icons/solid';
 import { Button } from '@/components/Button';
-import { ArticleModalForm } from '@/features/ArticleModalForm';
 import { fetchArticles } from 'services/api';
 import { UserContext } from '@/contexts/UserContext';
 import { Toast } from '@/components/Toast';
+import { ArticleCreationFormModal } from '@/features/ArticleCreationFormModal';
 
 const ArticlesPage = () => {
   const [articles, setArticles] = useState<ArticleType[]>([]);
@@ -46,10 +46,10 @@ const ArticlesPage = () => {
             <PlusIcon className="font-bold" />
             <span className="sm:hidden">Create Article</span>
           </Button>
-          <ArticleModalForm
+          <ArticleCreationFormModal
             open={open}
             onClose={() => setOpen(false)}
-            onSubmitSuccess={onArticleCreation}
+            onCreationSuccess={onArticleCreation}
           />
         </div>
         <ArticleList articles={articles} loading={loading} />

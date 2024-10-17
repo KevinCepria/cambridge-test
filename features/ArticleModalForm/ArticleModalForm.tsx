@@ -1,5 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { Modal } from '@/components/Modal';
 import { ArticleModalFormProps } from '@/features/ArticleModalForm/ArticleModalForm.types';
@@ -11,11 +11,12 @@ import { UserContext } from '@/contexts/UserContext';
 import { createArticle, updateArticle } from '@/services/api';
 
 export const ArticleModalForm = (props: ArticleModalFormProps) => {
-  const { article, open, onClose, onSubmitSuccess } = props;
-
+  const { article = null, open, onClose, onSubmitSuccess, action = 'create' } = props;
+  console.log('ssss', article);
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
@@ -27,7 +28,7 @@ export const ArticleModalForm = (props: ArticleModalFormProps) => {
 
   const { user } = useContext(UserContext);
   const editMode = !!article;
-  const heading = `${editMode ? 'Edit' : 'Create'} Article`;
+  const heading = `${action !== 'create' ? 'Edit' : 'Create'} Article`;
 
   const onSubmit = async (data: Pick<ArticleType, 'title' | 'body'>) => {
     let articleData;
@@ -44,6 +45,12 @@ export const ArticleModalForm = (props: ArticleModalFormProps) => {
     onSubmitSuccess?.(articleData);
     onClose?.();
   };
+
+  useEffect(() => {
+    if (open && editMode) {
+      reset({ title: article.title, body: article.body });
+    }
+  }, [open, editMode]);
 
   return (
     <Modal open={open} onClose={onClose}>
