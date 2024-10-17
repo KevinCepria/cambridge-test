@@ -19,9 +19,7 @@ export const Navbar = (props: NavbarProps) => {
   const { user } = useContext(UserContext);
 
   return (
-    <nav
-      className={clsx('bg-blue-600 max-sm:px-5 max-sm:py-4 sm:p-5 sticky top-0 z-10', className)}
-    >
+    <nav className={clsx('bg-blue-600 max-sm:px-5 max-sm:py-4 sm:p-5 z-10', className)}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <LogoV1 className="w-28 text-white" />
         <div className="flex items-center gap-4 text-white font-bold">
