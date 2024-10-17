@@ -4,7 +4,7 @@ import { PageProps } from '.next/types/app/(auth)/layout';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-import { ArticleList } from '@/features/ArticleList';
+import { SearchArticleList } from '@/features/SearchArticleList';
 import { ArticleType } from '@/types/Article';
 import { TextInput } from '@/components/TextInput';
 import { SelectInput } from '@/components/SelectInput';
@@ -19,14 +19,14 @@ const SearchPage = (props: PageProps) => {
   const [loading, setLoading] = useState(false);
 
   const paramKeys = Object.keys(searchParams);
-  const [paramKey, setParamKey] = useState(paramKeys[0] || SELECT_OPTIONS_SEARCH[0].value);
-  const [paramValue, setParamValue] = useState(searchParams[paramKeys[0]] || '');
+  const [paramKey, setParamKey] = useState('');
+  const [paramValue, setParamValue] = useState('');
 
   const router = useRouter();
 
   useEffect(() => {
-    setParamKey(paramKeys[0]);
-    setParamValue(searchParams[paramKeys[0]]);
+    setParamKey(paramKeys[0] || SELECT_OPTIONS_SEARCH[0].value);
+    setParamValue(searchParams[paramKeys[0]] || '');
     setLoading(true);
     fetchArticles(null, paramKeys[0], searchParams[paramKeys[0]])
       .then((data) => setArticles(data))
@@ -62,7 +62,7 @@ const SearchPage = (props: PageProps) => {
             Search
           </Button>
         </div>
-        <ArticleList articles={articles} loading={loading} />
+        <SearchArticleList articles={articles} loading={loading} />
       </div>
     </div>
   );
