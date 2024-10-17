@@ -16,6 +16,7 @@ import { SELECT_OPTIONS_SEARCH, APP_ROUTES } from 'utils/constants';
 const SearchPage = (props: PageProps) => {
   const searchParams = props.searchParams as Record<string, string>;
   const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const paramKeys = Object.keys(searchParams);
   const [paramKey, setParamKey] = useState(paramKeys[0] || SELECT_OPTIONS_SEARCH[0].value);
@@ -26,7 +27,10 @@ const SearchPage = (props: PageProps) => {
   useEffect(() => {
     setParamKey(paramKeys[0]);
     setParamValue(searchParams[paramKeys[0]]);
-    fetchArticles(null, paramKeys[0], searchParams[paramKeys[0]]).then((data) => setArticles(data));
+    setLoading(true);
+    fetchArticles(null, paramKeys[0], searchParams[paramKeys[0]])
+      .then((data) => setArticles(data))
+      .finally(() => setLoading(false));
   }, [searchParams]);
 
   return (
@@ -58,7 +62,7 @@ const SearchPage = (props: PageProps) => {
             Search
           </Button>
         </div>
-        <ArticleList articles={articles} />
+        <ArticleList articles={articles} loading={loading} />
       </div>
     </div>
   );

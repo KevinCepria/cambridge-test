@@ -6,4 +6,10 @@ export type ArticleListProps = {
    * @required
    */
   articles: ArticleType[];
+
+  /**
+   * If true the list will display a loading spinner
+   * @required
+   */
+  loading: boolean;
 };

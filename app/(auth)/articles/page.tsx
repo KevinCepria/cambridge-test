@@ -12,12 +12,19 @@ import { Toast } from '@/components/Toast';
 
 const ArticlesPage = () => {
   const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const { user } = useContext(UserContext);
   const [showToast, setShowToast] = useState(false);
 
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
-    if (user.id) fetchArticles(user.id).then((data) => setArticles(data));
+    if (user.id) {
+      setLoading(true);
+      fetchArticles(user.id)
+        .then((data) => setArticles(data))
+        .finally(() => setLoading(false));
+    }
   }, [user.id]);
 
   const onArticleCreation = (createdArticle: ArticleType) => {
@@ -45,7 +52,7 @@ const ArticlesPage = () => {
             onSubmitSuccess={onArticleCreation}
           />
         </div>
-        <ArticleList articles={articles} />
+        <ArticleList articles={articles} loading={loading} />
       </div>
       <Toast
         message="Successfully created article"
