@@ -7,7 +7,7 @@ import { ChevronDownIcon } from '@heroicons/react/16/solid';
 
 import { LogoV1 } from '@/icons/logo/LogoV1';
 import { UserContext } from '@/contexts/UserContext';
-import { UserIcon } from '@/icons/outline';
+import { UserIcon, HamburgerMenuIcon } from '@/icons/outline';
 import { logout } from '@/services/auth';
 import { NavbarProps } from '@/features/Navbar/Navbar.types';
 import { APP_ROUTES, NAV_LINKS } from '@/utils/constants';
@@ -33,9 +33,10 @@ export const Navbar = (props: NavbarProps) => {
           <div className="relative">
             <Menu>
               <MenuButton className="max-sm:border-none sm:border-l border-opacity-40 border-white pl-3 flex items-center gap-1">
-                <UserIcon className="w-5 h-5 rounded-full border border-white flex-none" />
-                <span className="max-sm:text-sm">{user.username}</span>
-                <ChevronDownIcon className="w-4" />
+                <UserIcon className="w-5 h-5 rounded-full border border-white flex-none max-sm:hidden" />
+                <span className="max-sm:text-sm max-sm:hidden">{user.username}</span>
+                <ChevronDownIcon className="w-4 max-sm:hidden" />
+                <HamburgerMenuIcon className="sm:hidden w-5" />
               </MenuButton>
 
               <MenuItems
@@ -43,6 +44,14 @@ export const Navbar = (props: NavbarProps) => {
                 anchor="bottom end"
                 className="bg-white w-52 z-20 origin-top-right rounded-sm border p-1 text-sm/6 text-gray-600 transition duration-100 ease-out"
               >
+                <div className="border-b sm:hidden">
+                  <MenuItem>
+                    <div className="flex items-center gap-2.5 py-1.5 px-3">
+                      <UserIcon className="w-5 h-5 rounded-full border border-gray-500 flex-none" />
+                      <span className="text-sm">{user.username}</span>
+                    </div>
+                  </MenuItem>
+                </div>
                 <div className="border-b sm:hidden">
                   {NAV_LINKS.map((link) => (
                     <MenuItem key={link.name}>
