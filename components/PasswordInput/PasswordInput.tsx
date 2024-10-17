@@ -10,7 +10,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     const [showPassword, setShowPassword] = useState(false);
 
     const inputType = showPassword ? 'text' : 'password';
-    const Icon = showPassword ? ShowPasswordIcon : HideViewIconIcon;
+    const Icon = showPassword ? HideViewIconIcon : ShowPasswordIcon;
 
     return (
       <div>
