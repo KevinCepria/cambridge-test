@@ -1,8 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { PageProps } from '.next/types/app/(auth)/layout';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 import { SearchArticleList } from '@/features/SearchArticleList';
 import { ArticleType } from '@/types/Article';
@@ -13,8 +11,7 @@ import { fetchArticles } from 'services/api';
 
 import { SELECT_OPTIONS_SEARCH, APP_ROUTES } from 'utils/constants';
 
-const SearchPage = (props: PageProps) => {
-  const searchParams = props.searchParams as Record<string, string>;
+const SearchPage = ({ searchParams }: { searchParams: Record<string, string> }) => {
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [loading, setLoading] = useState(false);
 
