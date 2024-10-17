@@ -40,7 +40,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             disabled={disabled}
             type="button"
           >
-            <Icon className="w-5 h-5 text-gray-700" />
+            <Icon className="w-5 h-5 text-gray-500" />
           </button>
         </div>
 
