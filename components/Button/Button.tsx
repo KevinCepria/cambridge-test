@@ -16,7 +16,7 @@ export const Button = (props: ButtonProps) => {
           'bg-blue-500': variant === 'info',
           'bg-red-500': variant === 'error',
           'bg-white !text-gray-600 border border-gray-400 border-opacity-50': variant === 'neutral',
-          '!bg-slate-500 opacity-50': disabled,
+          '!bg-slate-300 opacity-50': disabled,
           'cursor-not-allowed': disabled || loading,
         },
       )}
@@ -28,7 +28,7 @@ export const Button = (props: ButtonProps) => {
             'bg-blue-500': variant === 'info',
             'bg-red-500': variant === 'error',
             'bg-white': variant === 'neutral',
-            '!bg-slate-500': disabled,
+            '!bg-slate-300': disabled,
           })}
         >
           <LoadingSpinner />
