@@ -1,4 +1,4 @@
-Project is hosted in vercel -> https://cambridge-test-8uuacvoi6-kevin-ceprias-projects.vercel.app/
+Project is hosted in vercel -> https://cambridge-test.vercel.app/
 
 ## Libraries Used
 
