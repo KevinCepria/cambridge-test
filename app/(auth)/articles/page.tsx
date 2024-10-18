@@ -35,9 +35,8 @@ const ArticlesPage = () => {
   };
 
   const onEditSuccess = (updatedArticle: ArticleType) => {
-    const x = unionBy([updatedArticle], [...articles], 'id');
-    console.log('SSSSS', articles, x);
-    setArticles(x);
+    const newArticleArr = unionBy([updatedArticle], [...articles], 'id');
+    setArticles(newArticleArr);
     console.log('updated article', updatedArticle);
     setShowToast(true);
   };
