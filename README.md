@@ -1,4 +1,4 @@
-Project is hosted in vercel -> https://cambridge-test.vercel.app/
+Project is deployed on vercel -> https://cambridge-test.vercel.app/
 
 ## Libraries Used
 
